@@ -94,13 +94,13 @@ pnpm tauri build -- --no-default-features
 │   │   └── bin/crypto_cli.rs  # 与核心模块同源的 CLI 工具
 │   ├── tauri.conf.json     # Tauri 配置
 │   └── icons/              # 应用图标
-├── store/                  # 隐私政策（中英双语，md + html）
-└── scripts/                # 构建脚本
+├── PRIVACY.md              # 隐私政策（中英双语）
+└── privacy-policy.html     # 隐私政策网页版（可部署到官网）
 ```
 
 ## 隐私政策
 
-VaultBox 不收集、不上传、不出售任何个人数据。详见 [隐私政策](./store/privacy-policy.md)。
+VaultBox 不收集、不上传、不出售任何个人数据。详见 [隐私政策](./PRIVACY.md)。
 
 ## 关注我们
 
