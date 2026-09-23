@@ -1,0 +1,11 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "VaultBox 主窗口默认能力：core 基础权限 + 剪贴板（复制/清空秘密内容）+ 打开外部链接（官网）",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "clipboard-manager:default",
+    "shell:allow-open"
+  ]
+}

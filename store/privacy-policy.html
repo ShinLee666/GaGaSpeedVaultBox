@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VaultBox 隐私政策 · Privacy Policy</title>
+<style>
+  :root { --fg:#1a1a2e; --muted:#5a5a72; --accent:#4a5fd0; --line:#e4e4ef; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+         color:var(--fg); background:#fafafe; line-height:1.75; }
+  .wrap { max-width:820px; margin:0 auto; padding:48px 24px 80px; }
+  header { border-bottom:1px solid var(--line); padding-bottom:24px; margin-bottom:32px; }
+  h1 { font-size:1.7rem; margin:0 0 8px; }
+  .meta { color:var(--muted); font-size:.9rem; }
+  h2 { font-size:1.2rem; margin-top:36px; padding-left:12px; border-left:4px solid var(--accent); }
+  .summary { background:#eef0fb; border-radius:10px; padding:16px 20px; margin:20px 0; }
+  footer { margin-top:56px; padding-top:20px; border-top:1px solid var(--line);
+           color:var(--muted); font-size:.85rem; }
+  a { color:var(--accent); }
+  .lang-divider { text-align:center; color:var(--muted); margin:56px 0 0;
+                  letter-spacing:.3em; font-size:.8rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>VaultBox 隐私政策</h1>
+  <div class="meta">生效日期：2026 年 9 月 23 日 ｜ 最近更新：2026 年 9 月 23 日</div>
+</header>
+
+<p class="summary"><strong>一句话概括：您的秘密只属于您。本应用不收集、不上传、不出售任何个人数据；所有保险箱内容均在您的设备上加密存储，开发者（以及任何第三方）在任何时候都无法读取。</strong></p>
+
+<p>VaultBox（"本应用"）是一款开源的本地优先加密保险箱。本政策适用于通过 GitHub 及各发布渠道分发的 VaultBox 各版本（包括纯本地版本与支持自建服务器同步的完整版）。</p>
+
+<h2>1. 我们收集哪些信息</h2>
+<p><strong>我们不收集任何个人信息。</strong>本应用没有账户体系；不嵌入任何统计分析、广告 SDK、崩溃上报或行为追踪组件；不会读取与使用无关的设备文件、通讯录、位置、相册等信息。</p>
+
+<h2>2. 数据如何存储（本地优先，端到端加密）</h2>
+<ul>
+  <li>保险箱数据（账号条目、备注、恢复问题的答案等）<strong>仅保存在您的设备本地</strong>，使用 <strong>AES-256-GCM</strong> 加密；密钥由主密码通过 <strong>Argon2id</strong> 派生。</li>
+  <li>主密码与派生密钥<strong>永远不会离开您的设备</strong>。开发者无法重置、找回或读取您的密码和保险箱内容；主密码丢失且未设置恢复问题时，数据不可恢复。</li>
+  <li>剪贴板：仅在您<strong>主动点击"复制"</strong>时写入所选内容；本应用不会读取或监控剪贴板中的其他内容。</li>
+</ul>
+
+<h2>3. 纯本地版本</h2>
+<p>纯本地版本<strong>不包含任何联网代码</strong>，运行期间不会发起任何网络请求，所有数据 100% 保留在设备上。卸载应用将删除设备上的全部本地保险箱数据。</p>
+
+<h2>4. 完整版（自建服务器同步）</h2>
+<ul>
+  <li>同步为<strong>可选功能</strong>，仅连接<strong>您自行配置的服务器地址</strong>。</li>
+  <li>传输的数据均为<strong>密文</strong>（端到端加密），服务器与任何中间方均无法解密。</li>
+  <li>该服务器由您或您信任的一方运营，其数据实践受该运营方政策约束，与本项目开发者无关。您可随时停用同步并注销。</li>
+</ul>
+
+<h2>5. 第三方组件</h2>
+<p>本应用在 Windows 上使用 Microsoft <strong>WebView2</strong> 运行时渲染界面，其数据使用受 <a href="https://privacy.microsoft.com/">Microsoft 隐私条款</a> 约束。除此之外，本应用不包含任何第三方服务组件。</p>
+
+<h2>6. 数据共享与披露</h2>
+<p>我们不会出售、出租、共享或向任何第三方披露您的数据——数据（包括密文）从未经过我们的服务器，我们没有任何可供披露的数据。</p>
+
+<h2>7. 数据安全</h2>
+<p>加密算法：AES-256-GCM（认证加密）、Argon2id（抗硬件暴力破解的密钥派生）。主密钥仅存在于运行时内存，应用锁定后清除；不在磁盘、注册表或任何持久化位置保存明文密钥。请妥善保管主密码，并为设备启用系统级安全措施。</p>
+
+<h2>8. 儿童隐私</h2>
+<p>本应用不面向 13 岁以下儿童，亦不会收集任何年龄用户的个人信息。</p>
+
+<h2>9. 政策更新</h2>
+<p>本政策更新后将在本页面公布新版本及生效日期。政策变更不会影响既有数据的存储方式。</p>
+
+<h2>10. 联系我们</h2>
+<p>如对本政策有任何疑问，请在 GitHub 仓库提交 Issue：<a href="https://github.com/ShinLee666/GaGaSpeedVaultBox">github.com/ShinLee666/GaGaSpeedVaultBox</a></p>
+
+<div class="lang-divider">· ENGLISH ·</div>
+
+<header style="margin-top:24px;">
+  <h1>VaultBox Privacy Policy</h1>
+  <div class="meta">Effective date: September 23, 2026</div>
+</header>
+
+<p class="summary"><strong>In short: your secrets belong only to you. The App collects, uploads, and sells no personal data. All vault contents are encrypted on your device, and no one — including the developer — can ever read them.</strong></p>
+
+<h2>1. What We Collect</h2>
+<p><strong>We do not collect any personal information.</strong> The App has no account system, contains no analytics, advertising, crash-reporting, or tracking SDKs, and does not access data unrelated to your use.</p>
+
+<h2>2. How Your Data Is Stored</h2>
+<ul>
+  <li>Vault data is stored <strong>only on your device</strong>, encrypted with <strong>AES-256-GCM</strong>; the key is derived from your master password via <strong>Argon2id</strong>.</li>
+  <li>Your master password and keys <strong>never leave your device</strong>. No one can reset, recover, or read them. If the master password is lost and no recovery question was set, the data is unrecoverable.</li>
+  <li>Clipboard: written to <strong>only when you explicitly tap "Copy"</strong> on an item; never read or monitored otherwise.</li>
+</ul>
+
+<h2>3. Local-Only Edition</h2>
+<p>The local-only edition contains <strong>no networking code at all</strong> — no network requests are made, and all data remains 100% on your device. Uninstalling deletes all local vault data.</p>
+
+<h2>4. Full Edition (Self-Hosted Sync)</h2>
+<ul>
+  <li>Sync is <strong>optional</strong> and connects only to a <strong>server address you configure yourself</strong>.</li>
+  <li>Data in transit is <strong>ciphertext</strong> (end-to-end encrypted); neither the server nor any intermediary can decrypt it.</li>
+  <li>That server is operated by you or a party you trust, under that operator's own policies. You can disable sync at any time.</li>
+</ul>
+
+<h2>5. Third-Party Components</h2>
+<p>The App uses Microsoft's <strong>WebView2</strong> runtime on Windows, governed by the <a href="https://privacy.microsoft.com/">Microsoft Privacy Statement</a>. It contains no other third-party service components.</p>
+
+<h2>6. Data Sharing and Disclosure</h2>
+<p>We do not sell, rent, share, or disclose your data — your data (including ciphertext) never passes through our servers, so we hold nothing to disclose.</p>
+
+<h2>7. Data Security</h2>
+<p>AES-256-GCM authenticated encryption; Argon2id key derivation; the master key exists only in runtime memory and is cleared when locked. Please keep your master password safe and use OS-level device protection.</p>
+
+<h2>8. Children's Privacy</h2>
+<p>The App is not directed at children under 13 and collects no personal information from users of any age.</p>
+
+<h2>9. Changes to This Policy</h2>
+<p>Updates are posted here with a new effective date and do not alter how existing data is stored.</p>
+
+<h2>10. Contact Us</h2>
+<p>For questions about this policy, please open an issue on GitHub: <a href="https://github.com/ShinLee666/GaGaSpeedVaultBox">github.com/ShinLee666/GaGaSpeedVaultBox</a></p>
+
+<footer>© 2026 VaultBox Contributors · Open source under the MIT License</footer>
+</div>
+</body>
+</html>

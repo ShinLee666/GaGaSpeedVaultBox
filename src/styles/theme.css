@@ -1,0 +1,299 @@
+/* ============================================================
+   VaultBox 全局主题（Element Plus CSS 变量覆盖 + 应用级设计令牌）
+   视觉规范见主文档 §7.1：
+   - 主色 #6366F1（靛蓝），品牌渐变 #6366F1 -> #8B5CF6
+   - 浅色：背景 #F7F8FA / 卡片 #FFFFFF / 主文字 #1A1D21 / 次文字 #6B7280
+   - 深色：背景 #14161A / 卡片 #1E2228 / 主文字 #EDEFF2 / 次文字 #9AA1AA
+   Element Plus 深色模式统一使用 html.dark 类切换
+   ============================================================ */
+
+/* ---------- 浅色主题（默认） ---------- */
+:root {
+  /* 品牌色（indigo-500 #6366F1）及其 Element 衍生色阶 */
+  --el-color-primary: #6366f1;
+  --el-color-primary-light-3: #818cf8;
+  --el-color-primary-light-5: #a5b4fc;
+  --el-color-primary-light-7: #c7d2fe;
+  --el-color-primary-light-8: #e0e7ff;
+  --el-color-primary-light-9: #eef2ff;
+  --el-color-primary-dark-2: #4f46e5;
+
+  /* 语义色：成功绿 / 危险红（按设计语言覆盖） */
+  --el-color-success: #10b981;
+  --el-color-success-light-3: #34d399;
+  --el-color-success-light-5: #6ee7b7;
+  --el-color-success-light-7: #a7f3d0;
+  --el-color-success-light-8: #d1fae5;
+  --el-color-success-light-9: #ecfdf5;
+  --el-color-success-dark-2: #059669;
+
+  --el-color-danger: #ef4444;
+  --el-color-danger-light-3: #f87171;
+  --el-color-danger-light-5: #fca5a5;
+  --el-color-danger-light-7: #fecaca;
+  --el-color-danger-light-8: #fee2e2;
+  --el-color-danger-light-9: #fef2f2;
+  --el-color-danger-dark-2: #dc2626;
+
+  /* 应用级设计令牌（浅色） */
+  --vb-page-bg: #f7f8fa;
+  --vb-card-bg: #ffffff;
+  --vb-text-1: #1a1d21;
+  --vb-text-2: #6b7280;
+  --vb-border: #e8eaee;
+  --vb-hover: #f3f4f6;
+  --vb-brand: #6366f1;
+  --vb-brand-2: #8b5cf6;
+  --vb-radius: 10px;
+}
+
+/* ---------- 深色主题（html.dark） ---------- */
+html.dark {
+  /* 品牌色在深色下保持同一色阶即可 */
+  --el-color-primary: #6366f1;
+  --el-color-primary-light-3: #818cf8;
+  --el-color-primary-light-5: #a5b4fc;
+  --el-color-primary-light-7: #c7d2fe;
+  --el-color-primary-light-8: #e0e7ff;
+  --el-color-primary-light-9: #272c3f;
+  --el-color-primary-dark-2: #4f46e5;
+
+  /* Element Plus 深色基底微调，使控件与 #14161A/#1E2228 协调 */
+  --el-bg-color: #1e2228;
+  --el-bg-color-overlay: #232833;
+  --el-fill-color-blank: #1e2228;
+  --el-fill-color: #262b33;
+  --el-fill-color-light: #232832;
+  --el-fill-color-lighter: #20252e;
+  --el-fill-color-extra-light: #1e232b;
+  --el-fill-color-dark: #2a303a;
+  --el-fill-color-darker: #303743;
+
+  --el-border-color: #343b47;
+  --el-border-color-light: #2e3540;
+  --el-border-color-lighter: #2a303a;
+  --el-border-color-extra-light: #262c36;
+  --el-border-color-dark: #3d4553;
+  --el-border-color-darker: #475060;
+
+  --el-text-color-primary: #edeff2;
+  --el-text-color-regular: #cfd3da;
+  --el-text-color-secondary: #9aa1aa;
+  --el-text-color-placeholder: #6b7280;
+  --el-text-color-disabled: #4b5261;
+
+  --el-mask-color: rgba(10, 12, 16, 0.72);
+
+  /* 应用级设计令牌（深色） */
+  --vb-page-bg: #14161a;
+  --vb-card-bg: #1e2228;
+  --vb-text-1: #edeff2;
+  --vb-text-2: #9aa1aa;
+  --vb-border: #2a2f38;
+  --vb-hover: #262b33;
+  --vb-brand: #818cf8;
+  --vb-brand-2: #a78bfa;
+}
+
+/* ---------- 基础 ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    'Segoe UI',
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    'Noto Sans SC',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 14px;
+  color: var(--vb-text-1);
+  background-color: var(--vb-page-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  user-select: none; /* 桌面安全产品：默认禁止选中（复制走专属按钮） */
+}
+
+input,
+textarea {
+  user-select: text; /* 输入框仍允许选择 */
+}
+
+/* 等宽字体：用于密钥等敏感内容展示 */
+.vb-mono {
+  font-family: 'JetBrains Mono', 'Cascadia Code', Consolas, 'Courier New', monospace;
+  letter-spacing: 0.02em;
+}
+
+/* 细滚动条（WebView2 支持） */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--vb-text-2) 35%, transparent);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--vb-text-2) 55%, transparent);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- 通用卡片 / 页面工具类 ---------- */
+.vb-card {
+  background-color: var(--vb-card-bg);
+  border: 1px solid var(--vb-border);
+  border-radius: var(--vb-radius);
+}
+
+/* 认证类页面（欢迎/初始化/解锁/恢复）：居中卡片 + 品牌渐变氛围 */
+.vb-auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  position: relative;
+  overflow: auto;
+  background:
+    radial-gradient(1000px 500px at 85% -10%, color-mix(in srgb, var(--vb-brand) 14%, transparent), transparent 60%),
+    radial-gradient(800px 420px at -10% 110%, color-mix(in srgb, var(--vb-brand-2) 10%, transparent), transparent 55%),
+    var(--vb-page-bg);
+}
+
+.vb-auth-card {
+  width: min(464px, 100%);
+  background-color: var(--vb-card-bg);
+  border: 1px solid var(--vb-border);
+  border-radius: 14px;
+  padding: 36px 36px 30px;
+  box-shadow:
+    0 1px 2px rgba(16, 18, 24, 0.04),
+    0 12px 40px -12px rgba(16, 18, 24, 0.18);
+  animation: vb-rise 0.22s ease both;
+}
+
+@keyframes vb-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 品牌标识：渐变方块 + 名称 */
+.vb-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.vb-brand__logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--vb-brand) 0%, var(--vb-brand-2) 100%);
+  box-shadow: 0 6px 16px -4px color-mix(in srgb, var(--vb-brand) 55%, transparent);
+  flex-shrink: 0;
+}
+
+.vb-brand__name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.vb-brand__name em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--vb-brand), var(--vb-brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.vb-brand__sub {
+  font-size: 12px;
+  color: var(--vb-text-2);
+  margin-top: 2px;
+}
+
+.vb-auth-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.vb-auth-desc {
+  font-size: 13px;
+  color: var(--vb-text-2);
+  line-height: 1.6;
+  margin: 0 0 22px;
+}
+
+/* 表单间距微调 */
+.vb-auth-card .el-form-item {
+  margin-bottom: 18px;
+}
+
+.vb-auth-card .el-form-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 敏感内容：等宽 + 不可选中（防截屏复制，见 §7.4） */
+.vb-secret {
+  font-family: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+  user-select: none;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+/* 文本溢出省略 */
+.vb-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 页面淡入 */
+.vb-page-fade-enter-active {
+  transition: opacity 0.18s ease;
+}
+.vb-page-fade-enter-from {
+  opacity: 0;
+}
+
+/* 链接按钮风格的次级文字按钮 */
+.vb-text-link {
+  color: var(--vb-text-2);
+  cursor: pointer;
+  font-size: 13px;
+}
+.vb-text-link:hover {
+  color: var(--vb-brand);
+}

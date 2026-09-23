@@ -1,0 +1,60 @@
+[package]
+name = "vaultbox"
+version = "0.1.0"
+description = "VaultBox 桌面端：Tauri 2 薄层（commands）复用 rust-core 同源模块（src/ 下 crypto/vault/db/…）"
+authors = ["VaultBox"]
+edition = "2021"
+license = "MIT"
+
+# lib 名保持 vaultbox_core：desktop 下 bin/crypto_cli.rs 与 rust-core 原样一致，
+# 其 `use vaultbox_core::…` 无需改动即可指向本 crate 的同一套核心模块。
+[lib]
+name = "vaultbox_core"
+path = "src/lib.rs"
+
+[[bin]]
+name = "crypto_cli"
+path = "src/bin/crypto_cli.rs"
+
+# Tauri 桌面入口（默认按 package name 生成亦可，这里显式声明）
+[[bin]]
+name = "vaultbox"
+path = "src/main.rs"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[features]
+# remote = 联网模式（自建服务器同步）。默认开启；
+# 微软商店版为纯本地存储构建：cargo build --no-default-features（见 store/ 目录说明）。
+default = ["remote"]
+remote = ["dep:reqwest"]
+
+[dependencies]
+# ---- Tauri 2 薄层 ----
+tauri = { version = "2", features = [] }
+tauri-plugin-clipboard-manager = "2"
+tauri-plugin-shell = "2"
+reqwest = { version = "0.12", features = ["json"], optional = true }
+
+# ---- 核心模块依赖（版本与 rust-core/Cargo.toml 一致） ----
+argon2 = "0.5"
+aes-gcm = "0.10"
+hkdf = "0.12"
+sha2 = "0.10"
+rand = "0.8"
+zeroize = "1"
+uuid = { version = "1", features = ["v4"] }
+hex = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+rusqlite = { version = "0.32", features = ["bundled", "serialize"] }
+unicode-normalization = "0.1"
+
+[profile.dev]
+# Argon2id（64~128MiB）在 debug 下显著加速，仍保持可调试
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 2

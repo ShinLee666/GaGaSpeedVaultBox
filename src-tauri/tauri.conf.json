@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "VaultBox",
+  "version": "0.1.0",
+  "identifier": "com.gagaspeed.vaultbox",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "VaultBox",
+        "width": 800,
+        "height": 600,
+        "minWidth": 720,
+        "minHeight": 540,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src ipc: http://ipc.localhost https://ipc.localhost; media-src 'self'; object-src 'none'; frame-src 'self'; base-uri 'self'; form-action 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "msi"],
+    "category": "Utility",
+    "publisher": "GaGaSpeed",
+    "copyright": "© 2026 GaGaSpeed · www.speedforensic.cn",
+    "shortDescription": "VaultBox 加密保险箱",
+    "longDescription": "VaultBox 本地优先的端到端加密保险箱（Argon2id + AES-256-GCM，支持自建服务器联网同步）。由 GaGaSpeed 出品，官网 www.speedforensic.cn",
+    "icon": ["icons/icon.ico"]
+  }
+}
