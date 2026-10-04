@@ -7,6 +7,7 @@
 use tauri::State;
 
 use crate::commands::dto::{self, ItemDetailDto, ItemSummaryDto};
+use crate::commands::save::flush_session;
 use crate::commands::{locked, mark_dirty};
 use crate::db::{memory, rows};
 use crate::error::VaultError;
@@ -55,6 +56,8 @@ pub fn item_create(
         memory::meta_set(&sess.db, &format!("dirty:{id}"), "1")?;
     }
     mark_dirty(sess);
+    // 本地模式：条目变更即时落盘，不再仅依赖锁定/关闭时机（远程模式为 no-op）
+    flush_session(sess)?;
     Ok(ItemSummaryDto {
         id,
         kind,
@@ -94,6 +97,8 @@ pub fn item_update(
         memory::meta_set(&sess.db, &format!("dirty:{id}"), "1")?;
     }
     mark_dirty(sess);
+    // 本地模式：条目变更即时落盘（远程模式为 no-op）
+    flush_session(sess)?;
     Ok(())
 }
 
@@ -115,6 +120,8 @@ pub fn item_delete(id: String, state: State<'_, AppState>) -> Result<(), VaultEr
         let _ = memory::meta_del(&sess.db, &format!("dirty:{id}"));
     }
     mark_dirty(sess);
+    // 本地模式：删除即时落盘（远程模式为 no-op）
+    flush_session(sess)?;
     Ok(())
 }
 

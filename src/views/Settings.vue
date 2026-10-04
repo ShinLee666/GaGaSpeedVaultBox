@@ -105,7 +105,7 @@ onMounted(async () => {
     info.version = a.version ?? '—'
     info.edition = a.edition === 'store' ? 'store' : 'full'
   } catch {
-    info.version = '0.1.0'
+    info.version = '0.1.1'
   }
 })
 

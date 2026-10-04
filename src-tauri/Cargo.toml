@@ -1,6 +1,6 @@
 [package]
 name = "vaultbox"
-version = "0.1.0"
+version = "0.1.1"
 description = "VaultBox 桌面端：Tauri 2 薄层（commands）复用 rust-core 同源模块（src/ 下 crypto/vault/db/…）"
 authors = ["VaultBox"]
 edition = "2021"

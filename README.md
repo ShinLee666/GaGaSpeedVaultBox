@@ -10,7 +10,7 @@
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-green">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.1-green">
   <img alt="Platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey">
 </p>
 
@@ -22,7 +22,7 @@ VaultBox 是一款基于 **Tauri 2 + Vue 3** 的桌面端加密保险箱，采�
 - 主密码与密钥**永远不会离开设备**，开发者无法读取、无法重置你的保险箱内容；
 - 可选的**自建服务器联网同步**：同步数据全部为密文，服务器与任何中间方都无法解密。
 
-## 当前版本（v0.1.0）主要功能
+## 当前版本（v0.1.1）主要功能
 
 **本地保险箱**
 
@@ -97,6 +97,18 @@ pnpm tauri build -- --no-default-features
 ├── PRIVACY.md              # 隐私政策（中英双语）
 └── privacy-policy.html     # 隐私政策网页版（可部署到官网）
 ```
+
+## 更新日志
+
+### v0.1.1（修复）
+
+- **修复：新建条目后，锁定保险箱（含空闲自动锁定）或关闭应用再打开，新条目丢失。**
+  - 根因：条目变更此前只写入内存库，并不立即落盘；真正写盘仅发生在关闭窗口时，而“锁定”会直接丢弃内存会话，未触发落盘。
+  - 修复：本地模式下 `item_create` / `item_update` / `item_delete` 成功后立即将内存库写回 `vault.vault`；同时在锁定前补充一次落盘兜底，双重保障不丢数据。
+
+### v0.1.0
+
+- 首个开源版本：本地端到端加密保险箱、条目增删改查、空闲自动锁定、修改主密码与保护问题恢复，以及可选的服务器端到端加密同步。
 
 ## 隐私政策
 

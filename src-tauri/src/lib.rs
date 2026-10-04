@@ -26,7 +26,7 @@ use std::sync::Mutex;
 
 use state::AppState;
 
-pub const APP_VERSION: &str = "0.1.0";
+pub const APP_VERSION: &str = "0.1.1";
 
 /// 应用搭建（main.rs 调用；集成测试亦可复用）。
 pub fn run() {

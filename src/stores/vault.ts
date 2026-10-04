@@ -31,6 +31,7 @@ import {
   vaultPathOf,
   type VaultError,
 } from '../composables/useVault'
+import { flushNow } from '../composables/useVault'
 
 /** localStorage 键名（index.html 内联脚本同步使用 vaultbox:theme） */
 const LS_THEME = 'vaultbox:theme'
@@ -279,6 +280,7 @@ export const useVaultStore = defineStore('vault', {
       if (this.busy || !this.unlocked) return
       this.unlocked = false
       try {
+        flushNow()
         await lockVault()
       } catch {
         /* 后端锁定失败也照常清空本地态 */
